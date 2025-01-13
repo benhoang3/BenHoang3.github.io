@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(IMG_5382.jpg);
+    background-repeat: no-repeat;
+    background-size: 2570px;
+}
+h1, h2 {
+    text-align: center;
+}
+img {
+    display: block;
+    margin: 0 auto;
+    border: 10px solid;
+}
+p {
+    text-align: left; /* Ensures text flows from left to right */
+    max-width: 880px;
+    margin: 20px;
+    width: 100%; /* Ensures the paragraph takes full width */
+}
