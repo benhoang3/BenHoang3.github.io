@@ -11,8 +11,31 @@
             min-height: 2600px; /* Adjust the height to make the page longer */
         }
         nav {
-          margin-top: -84px; /* Adjust the value to move the links upward */
+          margin-top: -65px; /* Adjust the value to move the links upward */
           margin-left: 17px;
+        }
+
+        /* Scroll Button */
+        .scroll-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .scroll-btn:hover {
+            background-color: #0056b3;
+            transform: translateX(-50%) scale(1.1); /* Slightly enlarge on hover */
         }
     </style>
     <body>
@@ -52,5 +75,40 @@
         Completing these certifications has not only enriched my technical repertoire but also boosted my confidence in handling challenging projects. 
         These achievements signify my commitment to continuous learning and professional growth, traits that I believe are essential for long-term success.
         </p>
+
+        <!-- Scroll Button -->
+        <button class="scroll-btn" onclick="toggleScroll()">↓</button>
+
+        <script>
+            let scrollingDown = true; // Initial scroll direction
+            const scrollAmount = 560; // Scroll by 500px on each click
+
+            function toggleScroll() {
+                if (scrollingDown) {
+                    // Scroll down by the defined amount
+                    window.scrollBy({
+                        top: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Scroll all the way to the top of the page
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Determine if the page is at the bottom to switch direction
+                if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+                    scrollingDown = false; // Switch direction to scroll up
+                } else if (window.scrollY <= 0) {
+                    scrollingDown = true; // Switch direction to scroll down
+                }
+            }
+        </script>
     </body>
 </html>
+
+
+
+
