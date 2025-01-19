@@ -15,27 +15,29 @@
           margin-left: 17px;
         }
 
-        /* Scroll Button */
-        .scroll-btn {
+       /* Style for the scroll button */
+       #scrollButton {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: #4CAF50;
-            color: white;
+            bottom: 20px; /* Place 20px above the bottom */
+            right: 20px; /* Place 20px from the right edge */
+            font-size: 40px; /* Size of the arrow */
+            width: 70px; /* Circular button size */
+            height: 70px;
+            background-color: #4CAF50; /* Green background for better visibility */
             border: none;
-            border-radius: 50%;
-            font-size: 30px;
+            border-radius: 50%; /* Make it circular */
+            cursor: pointer;
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
         }
 
-        .scroll-btn:hover {
+        #scrollButton:hover {
             background-color: #0056b3;
-            transform: translateX(-50%) scale(1.1); /* Slightly enlarge on hover */
+            transform: scale(1.1); /* Slightly enlarge on hover */
         }
     </style>
     <body>
@@ -75,37 +77,30 @@
         Completing these certifications has not only enriched my technical repertoire but also boosted my confidence in handling challenging projects. 
         These achievements signify my commitment to continuous learning and professional growth, traits that I believe are essential for long-term success.
         </p>
-
-        <!-- Scroll Button -->
-        <button class="scroll-btn" onclick="toggleScroll()">↓</button>
+        <!-- Scroll Button (Arrow Down) -->
+        <button id="scrollButton">&#8595;</button> <!-- Down Arrow Unicode -->
 
         <script>
-            let scrollingDown = true; // Initial scroll direction
-            const scrollAmount = 560; // Scroll by 500px on each click
+            const scrollAmount = 700;
+            let sectionIndex = 0;
 
-            function toggleScroll() {
-                if (scrollingDown) {
-                    // Scroll down by the defined amount
-                    window.scrollBy({
-                        top: scrollAmount,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    // Scroll all the way to the top of the page
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }
+            const scrollButton = document.getElementById("scrollButton");
 
-                // Determine if the page is at the bottom to switch direction
-                if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
-                    scrollingDown = false; // Switch direction to scroll up
-                } else if (window.scrollY <= 0) {
-                    scrollingDown = true; // Switch direction to scroll down
-                }
-            }
+            scrollButton.addEventListener("click", function () {
+                const pageHeight = document.documentElement.scrollHeight;
+                const viewportHeight = window.innerHeight;
+
+                // Calculate next section to scroll to
+                const maxSections = Math.ceil(pageHeight / scrollAmount);
+                sectionIndex = (sectionIndex + 1) % maxSections;
+
+                window.scrollTo({
+                    top: sectionIndex * scrollAmount,
+                    behavior: "smooth",
+                });
+            });
         </script>
+
     </body>
 </html>
 
